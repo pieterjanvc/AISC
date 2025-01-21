@@ -1,10 +1,11 @@
 library(httr)
 library(jsonlite)
+library(keyring)
 
 #https://huggingface.co/docs/api-inference/tasks/chat-completion?code=curl#huggingface_hub.InferenceApi
 
 # --- HUGGINGFACE API FUNCTION --- 
-hf_api <- function(userPrompt, systemPrompt, APIkey, maxTokens = 200,
+hf_api <- function(userPrompt, systemPrompt, maxTokens = 200,
   
   model = "gemma-2-2b-it",
   baseURL = "https://api-inference.huggingface.co/models/"){
@@ -21,19 +22,17 @@ hf_api <- function(userPrompt, systemPrompt, APIkey, maxTokens = 200,
   if(!model %in% names(models)){
     stop("The model needs to be one of the following: ", 
       paste(names(models), collapse = ", "))
-  }
+  }  
 
-  if(missing(APIkey)){
-    APIkey = Sys.getenv("huggingface_API")
-    if(APIkey == ""){
-      stop("Please set a system environment variable called 'huggingface_API' ", 
-      "with the token generated on Huggingface. Alternatively, provide the ",
-      "token directly to the 'APIkey' argument (don't hardcode for safety reasons)"
+  if(!"huggingface_API" %in% key_list()$service){
+    stop(
+      "The 'huggingface_API' token was not found. Please set it using the ", 
+      "following command `keyring::key_set(\"huggingface_API\")` ",
+      " No username required, and put the token as the password"
     )
-    }
   }
 
-  auth <- sprintf("Bearer %s", APIkey)
+  auth <- sprintf("Bearer %s", key_get("huggingface_API"))
   body <- list(
     model = models[model][[1]][2],
     messages = list(

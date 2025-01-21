@@ -17,20 +17,15 @@ You will need to generate a Huggingface API Token in order to access the models.
 4. Once you have generated the token, save it in a secure location (see below
    how to save as a system variable)
 
-### Save token as a system variable
+### Save the API token to the credential store
 
-If you have the token as a system variable, you'll be able to access it safely
-in R without the need to keep copy-pasting it.
+The provided functions will ask for your Token the first time you use it by
+telling you to run the following function
 
-#### Windows
+```r
+keyring::key_set("huggingface_API")
+```
 
-1. Open the Start menu, then start typing "environment variable"
-2. THe option "Edit the system environment variables" will show up. Click it
-3. Click the "Environment Variables" button neat the bottom of the new window
-4. Under user variables, click new
-5. Name the variable `huggingface_API` and set the value to the Huggingface
-   token
-
-#### MacOS
-
-*todo*
+- Make sure you have the `keyring` package installed
+- If you are having issues with an incorrect Token, run the function again to
+  update the token
