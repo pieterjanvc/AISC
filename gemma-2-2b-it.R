@@ -5,7 +5,7 @@ library(keyring)
 #https://huggingface.co/docs/api-inference/tasks/chat-completion?code=curl#huggingface_hub.InferenceApi
 
 # --- HUGGINGFACE API FUNCTION --- 
-fh_llm <- function(userPrompt, systemPrompt, maxTokens = 200) {
+hf_llm <- function(userPrompt, systemPrompt, maxTokens = 200) {
   
   if(missing(userPrompt) || is.na(userPrompt) || userPrompt == ""){
     stop("The userPrompt cannot be empty")
@@ -40,7 +40,7 @@ fh_llm <- function(userPrompt, systemPrompt, maxTokens = 200) {
 }
 
 # --- EXAMPLE USE ---
-answer <- fh_llm(
+answer <- hf_llm(
   userPrompt = "poem about a funny bird", 
   systemPrompt = "limerick style"
 )
