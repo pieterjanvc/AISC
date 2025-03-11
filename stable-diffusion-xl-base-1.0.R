@@ -5,7 +5,7 @@ library(keyring)
 hf_image <- function(prompt, fileName, width = 512, height = 512, 
   num_inference_steps = 50){
   
-  if(missing(prompt) || is.na(prompt) || userPrompt == ""){
+  if(missing(prompt) || is.na(prompt) || prompt == ""){
     stop("The prompt cannot be empty")
   }
 

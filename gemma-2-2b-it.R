@@ -7,7 +7,7 @@ library(keyring)
 # --- HUGGINGFACE API FUNCTION --- 
 fh_llm <- function(userPrompt, systemPrompt, maxTokens = 200) {
   
-  if(missing(userPrompt) || is.na(userPrompt) || prompt == ""){
+  if(missing(userPrompt) || is.na(userPrompt) || userPrompt == ""){
     stop("The userPrompt cannot be empty")
   }
 
