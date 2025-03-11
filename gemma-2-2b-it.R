@@ -21,7 +21,7 @@ fh_llm <- function(userPrompt, systemPrompt, maxTokens = 200) {
 
   auth <- sprintf("Bearer %s", key_get("huggingface_API"))
   body <- list(
-    model = models[model][[1]][2],
+    model = "gemma-2-2b-it",
     messages = list(
       list(role = "user", content = userPrompt),
       list(role = "system", content = ifelse(missing(systemPrompt), "", systemPrompt))
