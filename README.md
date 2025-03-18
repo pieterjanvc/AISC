@@ -29,3 +29,7 @@ keyring::key_set("huggingface_API")
 - Make sure you have the `keyring` package installed
 - If you are having issues with an incorrect Token, run the function again to
   update the token
+
+### Check your profile status 
+
+- <https://huggingface.co/settings/billing> 
