@@ -1,8 +1,13 @@
 library(tidyverse)
 
 data <- read_csv("small_dataframe.csv")
+
+cat(data$text[1])
 # Clean up the note
-test <- str_replace_all(data$text[1], "\\s{2,}|\n", " ")
+randSample <- sample(1:nrow(data), 6)
+test <- str_replace_all(data$text[randSample], "\\s{2,}|\n", " ")
 
 #Start extracting
-str_extract(test, "Social History:.{50}")
+chiefComplaints <- str_match(test, "Chief Complaint:(.*)Major Surgical or Invasive Procedure:")[,2]
+
+data$text[randSample[3]] |> cat()
