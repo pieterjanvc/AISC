@@ -1,11 +1,11 @@
-
-
 library(httr)
 library(jsonlite)
 library(keyring) 
 
 
-# https://huggingface.co/docs/api-inference/en/tasks/text-generation?code=curl 
+# List of models: https://huggingface.co/docs/api-inference/en/tasks/text-generation?code=curl 
+# List of select models: https://github.com/pieterjanvc/AISC/blob/main/model_list.md 
+
 
 
 hf_llm <- function(userPrompt, systemPrompt, model = "google/gemma-2-2b-it", maxTokens = 200) {
@@ -43,8 +43,10 @@ hf_llm <- function(userPrompt, systemPrompt, model = "google/gemma-2-2b-it", max
 }
 
 
-hf_llm(
+answer <- hf_llm(
     userPrompt = "What are medical diagnosis?", 
     systemPrompt = "You are a health care provider", 
     model = "google/gemma-2-2b-it"
     )
+
+answer
