@@ -30,10 +30,10 @@ hf_llm <- function(userPrompt, systemPrompt, model = "google/gemma-2-2b-it", max
             list(role = "system", content = ifelse(missing(systemPrompt), "", systemPrompt))
         ),
         max_tokens = maxTokens
-    )
+    ) 
     
     result <- POST(
-        url = sprintf("https://api-inference.huggingface.co/models/%s/v1/chat/completions", model),
+        url = sprintf("https://router.huggingface.co/hf-inference/models/%s/v1/chat/completions", model),
         add_headers(Authorization = auth),
         content_type_json(),
         body = body |> toJSON(auto_unbox = TRUE))
